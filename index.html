@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="chat-container" id="chatContainer">
+        <h3 class="Paragrafo">Olá! Como posso te ajudar hoje?</h3>
+    </div>
+
+    <div class="Prompt">
+        <input type="text" id="userInput" class="Prompt__Campo" placeholder="Digite sua mensagem...">
+        <button id="sendMessageBtn">Enviar</button>
+    </div>
+
+    
+    <script type="module">
+        // importando os arquivos do gemini
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai"
+        import { HarmBlockThreshold, HarmCategory } from "https://esm.run/@google/generative-ai"
+
+        // importando a key
+        import API_KEY from "./API_key.js"
+        // configurando  o gemini
+
+        const genAI = new GoogleGenerativeAI(API_KEY)
+        let chat = null
+        const chatHistory = []
+
+        const generationConfig = {
+            temperature: 0.9,
+            topP: 0.1,
+            topK: 16,
+        };
+
+        async function run() {
+            // Deletando o paragrafo
+            setTimeout(() =>{
+                const paragrafo = document.querySelector('.Paragrafo')
+                paragrafo.remove()
+            }, 500)
+
+            // pegando elementos DOM
+            const msg = document.getElementById("userInput").value.trim()
+            const chatContainer = document.getElementById("chatContainer")
+            const userInput = document.getElementById("userInput")
+
+            // Fazendo o input ficar desabilitado por um tempo
+            userInput.value = 'Esperando resposta da IA...'
+            userInput.disabled = true;
+
+            setTimeout(() => {
+                userInput.value = ''
+                userInput.disabled = false
+                userInput.focus()
+            }, 1000)
+
+            // iniciando o genAI
+            const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro", generationConfig });
+
+            if (!chat) {
+                chat = model.startChat(chatHistory)
+            }
+
+            // recebendo a resposta do genAI
+            const result = await chat.sendMessage(msg)
+            const response = await result.response
+            const text = response.text()
+
+            // chamando uma função para adicionar a mensagem do usuario e da IA
+            appendMessage(msg, 'user', chatContainer)
+            appendMessage(text, 'ai', chatContainer)
+        
+ 
+        }
+
+        // função para adicionar a msg
+        function appendMessage(message, type, container) {
+            const messageElement = document.createElement("div")
+            messageElement.textContent = message
+            messageElement.classList.add("message", type)
+            container.appendChild(messageElement)
+        }
+
+        // chamando os eventos de click e keydown
+        document.getElementById("sendMessageBtn").addEventListener("click", run)
+        document.getElementById("userInput").addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') run();
+        })
+
+    </script>
+</body>
+
+</html>
