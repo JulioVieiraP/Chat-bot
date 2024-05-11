@@ -22,12 +22,11 @@
     <script type="module">
         // importando os arquivos do gemini
         import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai"
-        import { HarmBlockThreshold, HarmCategory } from "https://esm.run/@google/generative-ai"
 
         // importando a key
         import API_KEY from "./API_key.js"
-        // configurando  o gemini
 
+        // configurando  o gemini
         const genAI = new GoogleGenerativeAI(API_KEY)
         let chat = null
         const chatHistory = []
