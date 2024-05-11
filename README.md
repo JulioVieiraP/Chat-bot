@@ -22,7 +22,7 @@ Este é um projeto de um chat bot que utiliza a API do Google Generative AI para
 - **index.html:** Contém a estrutura HTML da aplicação.
 - **style.css:** Arquivo CSS para estilização da interface do chat bot.
 - **API_key.js:** Arquivo que contém a chave de API do Google Generative AI (não incluído no repositório).
-- **script.js:** Arquivo JavaScript que controla a lógica do chat bot.
+- **script.js:** Arquivo JavaScript que controla a lógica do chat bot, esse arquivo esta dentro do **index.html**.
 
 ## Dependências
 
