@@ -1,38 +1,33 @@
-Chat Bot
-Um chat bot simples que utiliza a API do Google Generative AI (Gemini) para responder às mensagens dos usuários.
+# Chat Bot
 
-Funcionalidades
-Envio de mensagens para o bot através do campo de entrada.
-Respostas automáticas geradas pelo Google Generative AI.
-Exibição das mensagens do usuário e do bot em uma interface de chat.
-Como usar
-Clone este repositório:
+Este é um projeto de um chat bot que utiliza a API do Google Generative AI para gerar respostas automáticas.
 
-bash
-Copy code
-git clone https://github.com/seu-usuario/chat-bot.git
-Abra o arquivo index.html em um navegador da web.
+## Como usar
 
-Digite sua mensagem no campo de entrada e pressione "Enviar".
+1. Clone este repositório para o seu ambiente local.
+2. Crie um arquivo `API_key.js` na raiz do projeto e adicione sua chave de API do Google Generative AI nele da seguinte forma:
 
-Configuração da chave API
-Para utilizar a API do Google Generative AI, é necessário fornecer uma chave API válida. Siga estas etapas para configurar a chave API:
+    ```javascript
+    const API_KEY = "sua-chave-de-api-aqui";
+    export default API_KEY;
+    ```
 
-Obtenha uma chave API do Google Cloud Console.
+    Certifique-se de não compartilhar sua chave de API publicamente, pois isso pode expor suas credenciais.
 
-Crie um arquivo chamado API_key.js na raiz do projeto.
+3. Abra o arquivo `index.html` em um navegador da web.
+4. Digite uma mensagem na caixa de entrada e pressione "Enviar" para interagir com o chat bot.
 
-Dentro deste arquivo, defina sua chave API como uma variável:
+## Estrutura do Projeto
 
-javascript
-Copy code
-const API_KEY = "sua-chave-api-aqui";
+- **index.html:** Contém a estrutura HTML da aplicação.
+- **style.css:** Arquivo CSS para estilização da interface do chat bot.
+- **API_key.js:** Arquivo que contém a chave de API do Google Generative AI (não incluído no repositório).
+- **script.js:** Arquivo JavaScript que controla a lógica do chat bot.
 
-export default API_KEY;
-Certifique-se de não compartilhar essa chave publicamente.
+## Dependências
 
-Tecnologias Utilizadas
-HTML
-CSS
-JavaScript (ES6)
-Google Generative AI
+- [@google/generative-ai](https://esm.run/@google/generative-ai): API do Google Generative AI para geração de respostas automáticas.
+
+## Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) e enviar pull requests com melhorias ou correções.
